@@ -1,5 +1,7 @@
 package crud.review.api.infrastructure.exceptions;
 
+import com.auth0.jwt.exceptions.JWTVerificationException;
+import crud.review.api.model.exception.AppointmentValidationException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +25,11 @@ public class ErrorHandling {
     public ResponseEntity badRequestHandler(MethodArgumentNotValidException exception) {
         var errors = exception.getFieldErrors();
         return ResponseEntity.badRequest().body(errors.stream().map(ErrorHandlerViewModel::new).toList());
+    }
+
+    @ExceptionHandler(AppointmentValidationException.class)
+    public ResponseEntity appointmentValidationHandler(Exception ex) {
+        return ResponseEntity.badRequest().body(ex.getLocalizedMessage());
     }
 
     @ExceptionHandler(BadCredentialsException.class)

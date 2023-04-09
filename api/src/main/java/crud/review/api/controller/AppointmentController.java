@@ -5,6 +5,7 @@ import crud.review.api.controller.dto.appointment.AppointmentViewModel;
 import crud.review.api.controller.dto.appointment.CancellationInputModel;
 import crud.review.api.repository.MedicRepository;
 import crud.review.api.service.AppointmentService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/appointment")
+@SecurityRequirement(name = "bearer-key")
 public class AppointmentController {
 
     @Autowired

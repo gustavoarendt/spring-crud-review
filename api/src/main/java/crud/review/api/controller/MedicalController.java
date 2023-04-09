@@ -5,6 +5,7 @@ import crud.review.api.controller.dto.medic.MedicViewModel;
 import crud.review.api.controller.dto.medic.UpdateMedic;
 import crud.review.api.model.Medic;
 import crud.review.api.repository.MedicRepository;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/medic")
+@SecurityRequirement(name = "bearer-key")
 public class MedicalController {
 
     @Autowired
